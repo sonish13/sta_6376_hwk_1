@@ -11,7 +11,7 @@ divide <- function(d,a) {
   if (d<0 || a<0) stop("divide() only works for positive ‘a‘ and ‘d‘.")
   quotient <- 0
   for (i in 1:d) {
-    if (d > a){
+    if (a <=d){
       d = d - a
       quotient = quotient + 1
     }
@@ -23,5 +23,26 @@ divide(22, 7)
 22 %% 7
 divide(22, 0)
 divide(-22,7)
+divide(21,7)
+```
+
+## Question 1(b)
+```{r}
+mod <- function(d,a) {
+  a<- divide(d,a)
+  unname(a[2])
+}
+mod(23, 7)
+mod(21,7)
+```
+
+## Question 1(c)
+```{r}
+
+```
+
+## Question 1(d)
+```{r}
+
 ```
 
