@@ -10,12 +10,10 @@ divide <- function(d,a) {
   if (a==0) stop("division by zero is undefined.")
   if (d<0 || a<0) stop("divide() only works for positive ‘a‘ and ‘d‘.")
   quotient <- 0
-  for (i in 1:d) {
-    if (a <=d){
+    while (a <=d){
       d = d - a
       quotient = quotient + 1
     }
-  }
   c(q = quotient, r = d)
 }  
 divide(22, 7)
