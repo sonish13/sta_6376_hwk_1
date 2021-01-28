@@ -46,3 +46,22 @@ mod(21,7)
 
 ```
 
+## Question 2(a)
+
+```{r}
+
+inv <- function(b, x0 = 10^-(ceiling(log10(abs(b)))), tol = sqrt(.Machine$double.eps), 
+                message = FALSE) {
+  dif <- 100
+  while (dif > tol){
+    y <- x0
+    x0 <- x0 * (2 - b * x0) 
+    dif <- x0 - y
+    if (message) print(x0)
+  }
+  x0
+}
+
+inv(1000, message = TRUE)
+
+```
