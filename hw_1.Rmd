@@ -1,0 +1,27 @@
+---
+title: "hw_1"
+author: "Sonish Lamsal, Emmie Jenkins"
+date: "1/27/2021"
+output: pdf_document
+---
+## Question 1(a)
+```{r error=TRUE}
+divide <- function(d,a) {
+  if (a==0) stop("division by zero is undefined.")
+  if (d<0 || a<0) stop("divide() only works for positive ‘a‘ and ‘d‘.")
+  quotient <- 0
+  for (i in 1:d) {
+    if (d > a){
+      d = d - a
+      quotient = quotient + 1
+    }
+  }
+  c(q = quotient, r = d)
+}  
+divide(22, 7)
+22 %/% 7
+22 %% 7
+divide(22, 0)
+divide(-22,7)
+```
+
