@@ -10,7 +10,7 @@ divide <- function(d,a) {
   if (a==0) stop("division by zero is undefined.")
   if (d<0 || a<0) stop("divide() only works for positive ‘a‘ and ‘d‘.")
   quotient <- 0
-    while (a <=d){
+    while (a<=d){
       d = d - a
       quotient = quotient + 1
     }
@@ -40,6 +40,66 @@ mod(21,7)
 ```
 
 ## Question 1(d)
+```{r}
+is.divisor <- function(d,a) {
+  if (a==0){
+    rem <- 1
+  }
+  else rem <- mod(abs(d),abs(a))
+  rem == 0
+}
+is.divisor(6, 3)
+is.divisor(6, 4)
+is.divisor(-6, 3)
+is.divisor(6, 0)
+```
+
+## Question 1(e)
+```{r error=TRUE}
+divisors <- function(d) {
+  if (d==0) stop("Input cannot be zero")
+  num <- c(-abs(d):abs(d))
+  check <- lapply(num, is.divisor, d=d)
+  num[unlist(check)]
+}
+divisors(7)
+divisors(18)
+```
+
+## Question 1(f)
+```{r}
+gcd_naive <- function(a,b) {
+  if ( a!=0 && b!=0){
+    div_a <- divisors(a)
+    div_b <- divisors(b)
+    common <- intersect(div_a, div_b)
+    gcd <- max(common)
+  }
+  else{
+    gcd <-  max(abs(a),abs(b))
+  }
+  gcd
+}
+gcd_naive(64, 28)
+gcd_naive(64, -28)
+gcd_naive(64,0)
+gcd_naive(-64,0)
+gcd_naive(0,0)
+```
+
+## Question 1(g)
+```{r}
+is.prime_naive <- function(p) {
+  div <- divisors(p)
+  length(div) == 4
+}
+is.prime_naive(5)
+is.prime_naive(20)
+is.prime_naive(1)
+is.prime_naive(-3)
+```
+
+## Question 1(h)
 ```{r}
 
 ```
