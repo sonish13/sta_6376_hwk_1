@@ -1,0 +1,67 @@
+---
+title: "hw_1"
+author: "Sonish Lamsal, Emmie Jenkins"
+date: "1/27/2021"
+output: pdf_document
+---
+## Question 1(a)
+```{r error=TRUE}
+divide <- function(d,a) {
+  if (a==0) stop("division by zero is undefined.")
+  if (d<0 || a<0) stop("divide() only works for positive ‘a‘ and ‘d‘.")
+  quotient <- 0
+  for (i in 1:d) {
+    if (a <=d){
+      d = d - a
+      quotient = quotient + 1
+    }
+  }
+  c(q = quotient, r = d)
+}  
+divide(22, 7)
+22 %/% 7
+22 %% 7
+divide(22, 0)
+divide(-22,7)
+divide(21,7)
+```
+
+## Question 1(b)
+```{r}
+mod <- function(d,a) {
+  a<- divide(d,a)
+  unname(a[2])
+}
+mod(23, 7)
+mod(21,7)
+```
+
+## Question 1(c)
+```{r}
+
+```
+
+## Question 1(d)
+```{r}
+
+```
+
+## Question 2(a)
+
+```{r}
+
+inv <- function(b, x0 = 10^-(ceiling(log10(abs(b)))), tol = sqrt(.Machine$double.eps), 
+                message = FALSE) {
+  dif <- 100
+  while (dif > tol){
+    y <- x0
+    x0 <- x0 * (2 - b * x0) 
+    dif <- x0 - y
+    if (message) print(x0)
+  }
+  x0
+}
+
+inv(1000, message = TRUE)
+
+```
