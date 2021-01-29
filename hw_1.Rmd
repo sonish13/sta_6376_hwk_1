@@ -101,7 +101,59 @@ is.prime_naive(-3)
 
 ## Question 1(h)
 ```{r}
+naive_seive <- function(n) {
+  num <- c(1:n)
+  check <- lapply(num, is.prime_naive)
+  num[unlist(check)]
+}
+naive_seive(100)
+```
 
+## Question 1(i)
+```{r}
+eratosthenes_sieve <- function(n) {
+  
+}
+```
+
+## Question 1(j)
+```{r}
+is.relprime <- function(a, b) {
+  gcd_naive(a, b) == 1
+}
+is.relprime(9, 16)
+is.relprime(6, 21)
+```
+
+## Question 1(k)
+```{r}
+gcd_recursive <- function(a, b, quiet=TRUE) {
+  if (quiet == FALSE) {
+    cat("(",a,",",b,")\n")
+  }
+  if (a==0 && b==0) 0
+  if (a==0 || b==0){
+    max(abs(a),abs(b))
+  }
+  else{
+    c <- abs(min(a,b))
+    d <- abs(max(a,b))
+    d <- mod(d,c)
+    gcd_recursive(c,d, quiet)
+  }
+}
+gcd_recursive( 64,  28, quiet = FALSE)
+gcd_recursive(64,-28)
+gcd_recursive( 64,   0)
+gcd_recursive(-64,   0)
+gcd_recursive(  0,   0)
+```
+
+## Question 1(l)
+```{r}
+gcd <- function(a, b, quiet = TRUE) {
+  
+}
 ```
 
 ## Question 2(a)
