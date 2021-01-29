@@ -175,3 +175,30 @@ inv <- function(b, x0 = 10^-(ceiling(log10(abs(b)))), tol = sqrt(.Machine$double
 inv(1000, message = TRUE)
 
 ```
+
+```{r error=TRUE}
+divide_real_fast <- function(a, b) {
+  if (b==0) stop("division by zero is undefined.")
+  a * inv(b)
+}
+
+divide_real_fast(22, 7)
+
+divide_real_fast(2, -4)
+
+divide_real_fast(2, 0)
+```
+
+```{r}
+divide_fast <- function(a, d){
+  divide(a,d)
+  c <- zapsmall(divide_real_fast(a,d))
+  floor_c <- floor(c)
+  t <- c - floor_c
+  q <- floor_c 
+  r <- d * t #need to round
+  q;r
+}
+
+
+```
