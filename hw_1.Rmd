@@ -158,22 +158,22 @@ gcd <- function(a, b, quiet = TRUE) {
 
 ## Question 2(a)
 
-```{r}
+```{r error=TRUE}
 
 inv <- function(b, x0 = 10^-(ceiling(log10(abs(b)))), tol = sqrt(.Machine$double.eps), 
                 message = FALSE) {
   if (b==0) stop("zero has no multiplicative inverse")
-  dif <- 1
-  if (b > 0){
+  dif <- 1 #initilaizing a difference > tol
+  if (b > 0){ #for positive input b
     while (dif > tol){
-    y <- x0
+    y <- x0 #setting the intial x iteration to y
     x0 <- x0 * (2 - b * x0) 
-    dif <- x0 - y
-    if (message) print(x0)
+    dif <- x0 - y #subtracting the newly iteration from the previous iteration
+    if (message) print(x0) #for message=TRUE
   }
   x0
   }
-  else {
+  else { #for negative input b
     b <- -b
     while (dif > tol){
     y <- x0
@@ -213,7 +213,7 @@ divide_fast <- function(a, d){
   floor_c <- floor(c)
   t <- c - floor_c
   q <- floor_c 
-  r <- round(d * t)
+  r <- round(d * t) #computing remainder and rounding
   c(q = q, r = r)
 }
 
