@@ -196,9 +196,14 @@ divide_fast <- function(a, d){
   floor_c <- floor(c)
   t <- c - floor_c
   q <- floor_c 
-  r <- d * t #need to round
-  q;r
+  r <- round(d * t)
+  c(q = q, r = r)
 }
 
+a <- 1e8; d <- 2
+divide(a, d)
+divide_fast(a, d)
+a %/% d
+a %% d
 
 ```
