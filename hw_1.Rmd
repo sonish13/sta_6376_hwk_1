@@ -112,8 +112,19 @@ naive_seive(100)
 ## Question 1(i)
 ```{r}
 eratosthenes_sieve <- function(n) {
-  
+  numbers <- c(2:n)
+  check <- rep(TRUE, n-1)
+  value <- floor(sqrt(n))
+  for (i in 2:value) {
+    mul <- n %/% i
+    for (j in 2:mul) {
+      check[match(i*j,numbers)] <- FALSE
+    }
+  }
+  numbers[check]
 }
+eratosthenes_sieve(100)
+
 ```
 
 ## Question 1(j)
@@ -143,7 +154,7 @@ gcd_recursive <- function(a, b, quiet=TRUE) {
   }
 }
 gcd_recursive( 64,  28, quiet = FALSE)
-gcd_recursive(64,-28)
+gcd_recursive( 64, -28)
 gcd_recursive( 64,   0)
 gcd_recursive(-64,   0)
 gcd_recursive(  0,   0)
@@ -151,10 +162,43 @@ gcd_recursive(  0,   0)
 
 ## Question 1(l)
 ```{r}
-gcd <- function(a, b, quiet = TRUE) {
+gcd <- function(a,b, quiet = TRUE) {
+  if (quiet == FALSE) {
+    cat("(",a,",",b,")\n")
+  }
+  if (a==0 && b==0) 0
+  else if (a==0 || b==0) max(abs(a),abs(b))
+  else {
+    while (a!=0 && b!=0) {
+      c <- abs(min(a,b))
+      d <- abs(max(a,b))
+      a <- c
+      b <- mod(d,c)
+      if (quiet == FALSE) {
+        cat("(",a,",",b,")\n")
+      }
+    }
+    max(abs(a),abs(b))
+  }
   
 }
+gcd( 64,  28, quiet = FALSE)
+gcd( 64, -28)
+gcd( 64,   0)
+gcd(-64,   0)
+gcd(  0,   0)
 ```
+
+## Question 1(m)
+```{r}
+library(bench)
+(result <- mark(
+  gcd(64,28),
+  gcd_recursive(64,28),
+  relative = TRUE
+))
+```
+
 
 ## Question 2(a)
 
@@ -173,7 +217,7 @@ inv <- function(b, x0 = 10^-(ceiling(log10(abs(b)))), tol = sqrt(.Machine$double
 }
 
 inv(1000, message = TRUE)
-
+inv(-1000)
 ```
 
 ```{r error=TRUE}
