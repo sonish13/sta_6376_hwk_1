@@ -35,8 +35,14 @@ mod(21,7)
 ```
 
 ## Question 1(c)
-```{r}
 
+### The remainer is positive when d and a have the same sign 
+### The remainder is neagtive when d and a have different signs
+```{r}
+-22 %%  7
+-22 %% -7
+ 22 %%  7
+ 22 %% -7
 ```
 
 ## Question 1(d)
@@ -204,7 +210,7 @@ library(bench)
 
 ```{r error=TRUE}
 
-inv <- function(b, x0 = 10^-(ceiling(log10(abs(b)))), tol = sqrt(.Machine$double.eps), 
+inv <- function(b, x0 = 10^-((ceiling(log10(abs(b))))), tol = sqrt(.Machine$double.eps), 
                 message = FALSE) {
   if (b==0) stop("zero has no multiplicative inverse")
   dif <- 1 #initilaizing a difference > tol
@@ -213,29 +219,23 @@ inv <- function(b, x0 = 10^-(ceiling(log10(abs(b)))), tol = sqrt(.Machine$double
     y <- x0 #setting the intial x iteration to y
     x0 <- x0 * (2 - b * x0) 
     dif <- x0 - y #subtracting the newly iteration from the previous iteration
-    if (message) print(x0) #for message=TRUE
-  }
-  x0
+      if (message) cat(x0, sep = "\n") #for message=TRUE
+    }
+    if (message) cat(x0, sep = "\n")
+    x0
   }
   else { #for negative input b
-    b <- -b
-    while (dif > tol){
-    y <- x0
-    x0 <- x0 * (2 - b * x0) 
-    dif <- x0 - y
-    }
-    -x0
+    -inv(-b)
   }
-  }
+}
   
 
 inv(1000, message = TRUE)
 inv(-1000)
 
-inv(0)
-
 ```
 
+## Queation 2(c)
 ```{r error=TRUE}
 divide_real_fast <- function(a, b) {
   if (b==0) stop("division by zero is undefined.")
@@ -249,6 +249,7 @@ divide_real_fast(2, -4)
 divide_real_fast(2, 0)
 ```
 
+## Question 2(c)
 ```{r}
 divide_fast <- function(a, d){
   divide(a,d)
