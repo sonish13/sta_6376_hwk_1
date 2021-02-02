@@ -210,7 +210,7 @@ library(bench)
 
 ```{r error=TRUE}
 
-inv <- function(b, x0 = 10^-((ceiling(log10(abs(b))))), tol = sqrt(.Machine$double.eps), 
+inv <- function(b, x0 = 10^-((ceiling(log10(abs(b))))+1), tol = sqrt(.Machine$double.eps), 
                 message = FALSE) {
   if (b==0) stop("zero has no multiplicative inverse")
   dif <- 1 #initilaizing a difference > tol
@@ -235,7 +235,7 @@ inv(-1000)
 
 ```
 
-## Queation 2(c)
+## Queation 2(b)
 ```{r error=TRUE}
 divide_real_fast <- function(a, b) {
   if (b==0) stop("division by zero is undefined.")
